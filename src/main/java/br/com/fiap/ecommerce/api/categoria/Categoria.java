@@ -29,7 +29,7 @@ public class Categoria {
     }
 
     public void atualizarCategoria(@Valid DadosAtualizarCategoria dados) {
-        if(dados.nome() != null)
+        if(dados.nome() != null && !dados.nome().isBlank())
             this.nome = dados.nome();
         if(dados.descricao() != null)
             this.descricao = dados.descricao();

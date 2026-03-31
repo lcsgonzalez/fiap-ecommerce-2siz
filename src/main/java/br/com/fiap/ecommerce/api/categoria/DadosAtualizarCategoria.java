@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 public record DadosAtualizarCategoria(
         Long id,
 
-        @NotBlank //Não aceita nulos ou espaços em branco
         @Size(min = 3, max = 60) //define tamanho mínimo e/ou máximo
         @Column(unique=true)
         String nome,
