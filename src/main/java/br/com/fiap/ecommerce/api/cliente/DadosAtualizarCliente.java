@@ -1,6 +1,8 @@
 package br.com.fiap.ecommerce.api.cliente;
 
+import br.com.fiap.ecommerce.api.endereco.DadosAtualizarEndereco;
 import jakarta.persistence.Column;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,5 +20,8 @@ public record DadosAtualizarCliente(
         @Size(max = 20)
         String telefone,
 
-        Long id){
+        Long id,
+
+         @Valid
+         DadosAtualizarEndereco endereco){
 }

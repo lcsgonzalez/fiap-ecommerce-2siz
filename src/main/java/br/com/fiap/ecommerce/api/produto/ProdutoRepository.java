@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     Page<Produto> findAllByAtivoTrue(Pageable paginacao);
-    boolean existsBySku(String sku);
+    boolean existsBySkuAndAtivoTrue(String sku);
 
     Optional<Produto> findByIdAndAtivoTrue(Long id);
 }

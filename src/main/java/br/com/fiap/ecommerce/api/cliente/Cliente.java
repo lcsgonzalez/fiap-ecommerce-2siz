@@ -1,6 +1,7 @@
 package br.com.fiap.ecommerce.api.cliente;
 
 
+import br.com.fiap.ecommerce.api.endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -25,24 +26,30 @@ public class Cliente {
     private String telefone;
     private int ativo;
 
+    @Embedded
+    private Endereco endereco;
+
     public Cliente(DadosCadastroCliente dados){
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
-        this.ativo = 1;
+        this.ativo = 0;
+        this.endereco = new Endereco(dados.endereco());
     }
 
-    public void atualizarCliente(@Valid DadosAtualizarCliente dados) {
-        if(dados.nome() != null && !dados.nome().isBlank())
+    public void  atualizarCliente(DadosAtualizarCliente dados){
+        if(dados.nome() !=null && !dados.nome().isBlank())
             this.nome = dados.nome();
-        if(dados.email() != null && !dados.email().isBlank())
+        if(dados.email() !=null && !dados.email().isBlank())
             this.email = dados.email();
-        if (dados.telefone() != null && !dados.telefone().isBlank())
+        if(dados.telefone() !=null && !dados.telefone().isBlank())
             this.telefone = dados.telefone();
+        if(dados.endereco() != null)
+            this.endereco.atualizarEndereco(dados.endereco());
     }
 
-    public void excluirCliente() {
+    public void excluirCliente(){
         this.ativo = 0;
     }
 }
